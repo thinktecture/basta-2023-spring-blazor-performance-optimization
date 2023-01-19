@@ -1,0 +1,103 @@
+﻿/* Fix height and enable scrolling */
+.grid {
+    height: 36rem;
+    overflow-y: auto;
+}
+
+.grid ::deep table {
+    min-width: 100%;
+}
+
+/* Sticky header while scrolling */
+::deep thead {
+    position: sticky;
+    top: 0;
+    background-color: #d8d8d8;
+    outline: 1px solid gray;
+    z-index: 1;
+}
+
+/* For virtualized grids, it's essential that all rows have the same known height */
+::deep tr {
+    height: 30px;
+    border-bottom: 0.5px solid silver;
+}
+
+::deep tbody td {
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 0;
+    text-overflow: ellipsis;
+}
+
+::deep .quickgrid[theme=thinktecture] {
+    width: 100%;
+}
+
+    ::deep .quickgrid[theme=thinktecture] .col-title {
+        justify-content: space-between;
+        padding: 0.5rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        background-color: #3D6FB4;
+        color: #fff;
+        height: 2rem;
+    }
+
+    ::deep .quickgrid[theme=thinktecture] .sort-indicator {
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-chevron-up" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/> </svg>');
+        opacity: 1;
+    }
+
+    ::deep .quickgrid[theme=thinktecture] .col-header-content {
+        padding-right: 0;
+    }
+
+::deep th.country-name {
+    width: 14rem;
+}
+
+/* Subtle stripe effect */
+::deep tr:nth-child(even) {
+    background: rgba(255,255,255,0.4);
+}
+
+/* Don't collapse rows even if they are empty */
+::deep tbody tr {
+    height: 1.8rem;
+}
+
+::deep .col-action {
+    width: 6rem;
+    padding-right: 0 !important;
+}
+
+/* Style the custom page links*/
+.page-buttons {
+    margin: 1rem 0;
+    align-items: center;
+}
+
+    .page-buttons button {
+        border: 1px solid #d6d7d8;
+        color: black;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        transition: transform 0.3s ease-out;
+        margin: 0.25rem;
+    }
+
+        .page-buttons button:active {
+            background: #a7c1ff !important;
+            color: white;
+        }
+
+        .page-buttons button:hover:not(.current) {
+            background: #c0c9dc;
+        }
+
+        .page-buttons button.current {
+            background: #3771f4;
+            color: white;
+        }

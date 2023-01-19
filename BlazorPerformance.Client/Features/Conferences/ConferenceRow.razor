@@ -1,0 +1,8 @@
+﻿<li @key="Conference?.Id" class="@($"table-row {_hightlightClass}")">
+    <div class="col col-1" data-label="Title">@Conference?.Title</div>
+    <div class="col col-2 truncate" data-label="Date">@Conference?.DateFrom.ToShortDateString()</div>
+    <div class="col col-3" data-label="Type">@Conference?.DateTo.ToShortDateString()</div>
+    <div class="col col-4" data-label="Language">@Conference?.City</div>
+    <div class="col col-5" data-label="Primary Tag">@Conference?.VisitorsCount</div>
+</li>
+

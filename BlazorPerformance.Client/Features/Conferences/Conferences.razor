@@ -1,0 +1,33 @@
+﻿@using BlazorPerformance.Shared.Models
+@inherits CollectionBaseComponent<BlazorPerformance.Shared.Models.Conference, ConferenceEditor>
+
+@if (IsLoading)
+{
+    <div class="spinner"></div>
+}
+else
+{
+    <Collection TItem="BlazorPerformance.Shared.Models.Conference"
+            Items="Collection"
+            SearchTerm="@SearchTerm">
+        <HeaderContent>
+            <div class="col col-1">Title</div>
+            <div class="col col-2">From</div>
+            <div class="col col-3">To</div>
+            <div class="col col-4">City</div>
+            <div class="col col-5">Visitors</div>
+        </HeaderContent>
+        <RowContent>
+            <ConferenceRow Conference="@context" HighlightId="_idToUpdate" Count="_count"></ConferenceRow>
+        </RowContent>
+        <RowPlaceholder>
+            <li class="table-row">
+                <div class="col col-1"><MudSkeleton /></div>
+                <div class="col col-2"><MudSkeleton /></div>
+                <div class="col col-3"><MudSkeleton /></div>
+                <div class="col col-4"><MudSkeleton /></div>
+                <div class="col col-5"><MudSkeleton /></div>
+            </li>
+        </RowPlaceholder>
+    </Collection>
+}

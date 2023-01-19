@@ -1,0 +1,24 @@
+﻿@page "/"
+
+<PageTitle>Übersicht</PageTitle>
+
+<MudPaper Elevation="2" Class="pa-4 d-flex justify-center rounded-0">
+    <SearchBar @bind-SearchTerm="_searchTerm"></SearchBar>
+</MudPaper>
+
+<MudTabs Style="overflow: hidden" Outlined="false" Position="@activePosition" Rounded="true" Border="true"
+         ApplyEffectsToContainer="true" Class="mt-8 tabs-height" PanelClass="pa-6 flex-column">
+    <MudTabPanel Text="Contributions">
+        <Contributions SearchTerm="@_searchTerm"></Contributions>
+    </MudTabPanel>
+    <MudTabPanel Text="Conferences">
+        <ErrorBoundary>
+            <ChildContent>
+                <Conferences SearchTerm="@_searchTerm"></Conferences>
+            </ChildContent>
+            <ErrorContent>
+                <MudAlert Severity="Severity.Error">Loading Conferences failed. @context.Message</MudAlert>
+            </ErrorContent>
+        </ErrorBoundary>
+    </MudTabPanel>
+</MudTabs>

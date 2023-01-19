@@ -1,0 +1,11 @@
+@inherits InputBase<string>
+
+<div class="group">
+    <input id="@Id"
+           class="form-control @CssClass" 
+           placeholder="Override ShouldRender"  
+           @bind="CurrentValue" 
+           @oninput="PreventRender" />
+    <label>@Label</label>
+    <span class="render-message">@_renderMessage</span>
+</div>

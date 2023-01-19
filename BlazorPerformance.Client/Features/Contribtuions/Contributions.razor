@@ -1,0 +1,78 @@
+﻿@using BlazorPerformance.Client.Utils
+@inherits CollectionBaseComponent<BlazorPerformance.Shared.Models.Contribution, ContributionEditor>
+
+<MudAppBar>
+    <MudText Typo="Typo.h5">Performance Optimierung in .NET 7</MudText>
+    <MudSpacer />
+    <MudIconButton Icon="@(_showList ? Icons.Material.Filled.ViewList : Icons.Material.Filled.GridView)" OnClick="ToggleView"></MudIconButton>
+</MudAppBar>
+
+@if (IsLoading)
+{
+    <div class="spinner"></div>
+}
+else
+{
+    @if (_showList)
+    {
+        <Collection TItem="BlazorPerformance.Shared.Models.Contribution"
+            Items="Collection"
+            SearchTerm="@SearchTerm">
+            <HeaderContent>
+                <div class="col col-1">Title</div>
+                <div class="col col-2">Date</div>
+                <div class="col col-3">Type</div>
+                <div class="col col-4">Language</div>
+                <div class="col col-5">Primary Tag</div>
+            </HeaderContent>
+            <RowContent>
+                <ContributionRow Contribution="@context"
+                         SearchTerm="@SearchTerm"
+                         ItemClicked="Utils.EventUtil.AsNonRenderingEventHandler(() => CollectionItemClicked(context.Id))">
+                </ContributionRow>
+            </RowContent>
+            <RowPlaceholder>
+                <li class="table-row">
+                    <div class="col col-1"><MudSkeleton /></div>
+                    <div class="col col-2"><MudSkeleton /></div>
+                    <div class="col col-3"><MudSkeleton /></div>
+                    <div class="col col-4"><MudSkeleton /></div>
+                    <div class="col col-5"><MudSkeleton /></div>
+                </li>
+            </RowPlaceholder>
+        </Collection>
+    }
+    else
+    {
+        <div class="grid">
+            <QuickGrid 
+                TGridItem=BlazorPerformance.Shared.Models.Contribution 
+                ItemsProvider="_itemsProvider"
+                Theme="thinktecture" 
+                Virtualize="true" 
+                ResizableColumns="false">
+                <PropertyColumn Property="@(p => p!.Title)" Sortable="true" />
+                <PropertyColumn Property="@(p => p!.Type)" Sortable="true" />
+                <PropertyColumn Property="@(p => p!.Date)" Sortable="true" />
+                <PropertyColumn Property="@(p => p!.Language)" Sortable="true" />
+            </QuickGrid>
+        </div>
+        @*<div class="page-buttons">
+            Page:
+            @if (pagination.TotalItemCount.HasValue)
+            {
+                for (var pageIndex = 0; pageIndex <= pagination.LastPageIndex; pageIndex++)
+                {
+                    var capturedIndex = pageIndex;
+                    <button @onclick="@(() => GoToPageAsync(capturedIndex))"
+            class="@PageButtonClass(capturedIndex)"
+            aria-current="@AriaCurrentValue(capturedIndex)"
+            aria-label="Go to page @(pageIndex + 1)">
+                        @(pageIndex + 1)
+                    </button>
+                }
+            }
+        </div>*@
+    }
+}
+

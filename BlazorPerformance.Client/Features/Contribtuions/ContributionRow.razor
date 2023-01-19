@@ -1,0 +1,11 @@
+﻿@using BlazorPerformance.Client.Utils
+
+<li class="table-row" @onclick="OnItemClicked">
+    <div class="col col-1">
+        <MudHighlighter Text="@Contribution?.Title" HighlightedText="@SearchTerm" />
+    </div>
+    <div class="col col-2 truncate">@Contribution?.Date</div>
+    <div class="col col-3">@Contribution?.Type</div>
+    <div class="col col-4">@Contribution?.Language</div>
+    <div class="col col-5">@Contribution?.PrimaryTag</div>
+</li>

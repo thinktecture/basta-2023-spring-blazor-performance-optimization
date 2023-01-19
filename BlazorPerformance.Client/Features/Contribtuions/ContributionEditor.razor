@@ -1,0 +1,17 @@
+﻿@if (_contribution != null)
+{
+    <MudDialog>
+        <DialogContent>
+            <EditForm class="d-flex flex-column" style="gap: 2rem;" Model="_contribution" OnSubmit="Submit">
+                <CustomInput @bind-Value="_contribution.Title" Label="Titel"></CustomInput>
+				<HandleEventInputText @bind-Value="_contribution.Type" Label="Typ"></HandleEventInputText>
+				<CustomInput @bind-Value="_contribution.PrimaryTag" Label="Primary Tag"></CustomInput>
+				<CustomTextarea @bind-Value="_contribution.Abstract" Label="Beschreibung"></CustomTextarea>
+            </EditForm>
+        </DialogContent>
+        <DialogActions>
+            <MudButton ButtonType="ButtonType.Button" OnClick="Cancel">Abbrechen</MudButton>
+            <MudButton ButtonType="ButtonType.Submit" Color="Color.Primary" OnClick="Submit">Speichern</MudButton>
+        </DialogActions>
+    </MudDialog>
+}

@@ -1,0 +1,17 @@
+﻿@inherits LayoutComponentBase
+
+<MudThemeProvider Theme="@DefaultTheme" @bind-IsDarkMode="_isDarkTheme" />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudLayout>    
+    <MudAppBar>
+        <MudText Typo="Typo.h5">Performance Optimierung in .NET 7</MudText>
+        <MudSpacer />
+        <MudIconButton Icon="@Icons.Material.Filled.ShieldMoon" OnClick="ToggleTheme"></MudIconButton>
+    </MudAppBar>
+    <MudMainContent>
+        @Body
+    </MudMainContent>
+</MudLayout>
+

@@ -1,0 +1,8 @@
+﻿@using BlazorPerformance.Client.Utils
+@inherits InputBase<string>
+
+ <div class="group"> 
+    <InputTextArea @bind-Value="@CurrentValue"></InputTextArea><span class="highlight"></span><span class="bar"></span>
+    <label>@Label</label>
+    <span class="render-message">@_renderMessage</span>
+</div>

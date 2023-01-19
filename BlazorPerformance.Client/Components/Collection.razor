@@ -1,0 +1,42 @@
+﻿@using BlazorPerformance.Shared.Models
+@typeparam TItem where TItem: class, IModelId
+
+<MudAlert Severity="Severity.Info">
+    <div class="d-flex">
+        <span class="mr-4">Rendering count: @_renderingTimes</span>
+        @if (!renderingStopwatch.IsRunning && renderingStopwatch.Elapsed.TotalSeconds > 0)
+        {
+            <span>Rendering time: <b>@Math.Round(renderingStopwatch.Elapsed.TotalSeconds, 2) seconds</b></span>
+        }
+    </div>
+</MudAlert>
+
+<div class="table-container">
+    <div class="table-header">
+        @HeaderContent
+    </div>
+    <ul class="responsive-table">
+        @if (Searching)
+        {
+            <div class="spinner"></div>
+        }
+        else if (Items == null || Items.Count() <= 0)
+        {
+            <p>No Data found</p>
+        }
+        else
+        {
+            <Virtualize @ref="_virtualize" ItemsProvider="LoadCollection" Context="conf" SpacerElement="li">
+                <ItemContent>
+                    @RowContent(conf)
+                </ItemContent>
+                <Placeholder>
+                    @RowPlaceholder
+                </Placeholder>
+            </Virtualize>
+        }
+    </ul>
+</div>
+
+
+

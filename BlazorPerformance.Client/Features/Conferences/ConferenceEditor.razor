@@ -1,0 +1,17 @@
+﻿@if (_conference != null)
+{
+    <MudDialog>
+        <DialogContent>
+            <EditForm class="d-flex flex-column" style="gap: 2rem;" Model="_conference" OnSubmit="Submit">
+                <CustomInput @bind-Value="_conference.Title" PreventRendering="PreventRendering"  Label="Titel"></CustomInput>
+                <CustomInput @bind-Value="_conference.City" PreventRendering="PreventRendering"  Label="Titel"></CustomInput>
+                <MudDatePicker @bind-Value="_conference.DateFrom" Required="true" Label="PrimaryTag"></MudDatePicker>
+                <MudDatePicker @bind-Value="_conference.DateTo" Required="true" Label="PrimaryTag"></MudDatePicker>
+            </EditForm>
+        </DialogContent>
+        <DialogActions>
+            <MudButton ButtonType="ButtonType.Button" OnClick="Cancel">Abbrechen</MudButton>
+            <MudButton ButtonType="ButtonType.Submit" Color="Color.Primary" OnClick="Submit">Speichern</MudButton>
+        </DialogActions>
+    </MudDialog>
+}
